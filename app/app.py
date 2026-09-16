@@ -38,3 +38,10 @@ def get_user_safe():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+# ❌ VULNERABILIDADE 4: Path Traversal
+@app.route('/file')
+def read_file():
+    filename = request.args.get('name')
+    with open(f"/var/data/{filename}", 'r') as f:
+        return f.read()
