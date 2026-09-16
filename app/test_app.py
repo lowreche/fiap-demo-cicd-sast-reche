@@ -1,5 +1,16 @@
+import sqlite3
 import pytest
 from app import app
+
+@pytest.fixture(autouse=True)
+def setup_db():
+    conn = sqlite3.connect('users.db')
+    # Cria a tabela users caso ela não exista
+    conn.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT)")
+    # Insere um usuário para o teste não falhar por falta de dados
+    conn.execute("INSERT OR IGNORE INTO users (id, name) VALUES (1, 'Luiz Teste')")
+    conn.commit()
+    conn.close()
 
 @pytest.fixture
 def client():
