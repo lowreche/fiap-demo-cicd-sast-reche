@@ -46,3 +46,5 @@ def read_file():
 if __name__ == '__main__':
     debug_mode = os.environ.get("FLASK_DEBUG", "false").lower() == "true"
     app.run(debug=debug_mode)
+
+    #test
