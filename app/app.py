@@ -45,5 +45,6 @@ def read_file():
     filename = request.args.get('name')
     with open(f"/var/data/{filename}", 'r') as f:
         return f.read()
+    
 
     
